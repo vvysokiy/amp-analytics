@@ -25,5 +25,4 @@ ReactDOM.render((
 //   })
 //   .catch(error => console.error('ERROR_HANDLER: "/test/secret";', error.message));
 //
-console.log('приве');
-console.log('как дела');
+console.log('привет от Вовы');

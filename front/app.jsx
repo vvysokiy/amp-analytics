@@ -1,12 +1,42 @@
 import React from 'react';
+import axios from 'axios';
 
-// import Navigation from './navigation'
-// import Chat from './chat'
+import Textarea from './textarea.jsx';
 
-const App = () => (
-  <div>
-    sdjkhfdsfjkdsfj
-  </div>
-);
+export default class App extends React.PureComponent {
+  state = {
+    value: '',
+  };
 
-export default App;
+  analytics = () => {
+    const { value } = this.state;
+    const list = value.split('\n');
+    console.log('analytics list', list);
+    axios.post('/', {list})
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(error => console.error('ERROR_HANDLER: "/test/secret";', error.message));
+  }
+
+  onChange = event => {
+    this.setState({
+      value: event.target.value
+    });
+  }
+
+  render() {
+    const {value} = this.state;
+
+    return (
+      <div>
+        <button onClick={this.analytics}>
+          analytics
+        </button>
+        <Textarea
+          onChange={this.onChange}
+          value={value}/>
+      </div>
+    )
+  }
+};

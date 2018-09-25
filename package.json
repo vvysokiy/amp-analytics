@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "amphtml-validator": "^1.0.23",
     "axios": "^0.18.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
@@ -13,7 +14,9 @@
     "prop-types": "^15.6.2",
     "pug": "2.0.0-beta11",
     "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react-dom": "^16.5.2",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
