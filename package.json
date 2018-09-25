@@ -30,7 +30,8 @@
   },
   "scripts": {
     "start": "node ./bin/www",
-    "front": "webpack --watch"
+    "front": "webpack --watch",
+    "all": "DEBUG=myapp:* npm start & npm run front"
   },
   "repository": {
     "type": "git",

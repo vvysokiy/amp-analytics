@@ -30,7 +30,6 @@ function analytics(list, response) {
 
 function startRequest(list, validator, response) {
   const data = [];
-  console.log('list.length', list.length);
   list.forEach(item => {
     const url = item;
 
@@ -60,10 +59,7 @@ function startRequest(list, validator, response) {
         return data;
       })
       .then(data => {
-        console.log('data.length', data.length);
         if (data.length === list.length) {
-          console.log('внутри data.length', data.length);
-          console.log('list', list);
           sendOnClient(data, response);
         }
       })
