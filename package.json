@@ -1,0 +1,42 @@
+{
+  "name": "amp-analytics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "prop-types": "^15.6.2",
+    "pug": "2.0.0-beta11",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0"
+  },
+  "scripts": {
+    "start": "node ./bin/www",
+    "front": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VladimirVysokij/amp-analytics.git"
+  },
+  "author": "v.vysokiy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VladimirVysokij/amp-analytics/issues"
+  },
+  "homepage": "https://github.com/VladimirVysokij/amp-analytics#readme"
+}
