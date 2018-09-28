@@ -1,5 +1,8 @@
 const path = require('path');
 /* Плагины */
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 // const CleanWebpackPlugin = require('clean-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 //   .BundleAnalyzerPlugin;
@@ -14,6 +17,17 @@ module.exports = {
     // chunkFilename: '[name].js',
     path: path.resolve(__dirname, 'public/js')
   },
+  plugins: [
+    // new ExtractTextPlugin('css/[name].css', {allChunks: true}),
+    new MiniCssExtractPlugin({
+      // Опции аналогичные webpackConfig.output
+      // но свойство path не работает!
+      // Решение: переназначение filename и chunkFilename
+      // https://stackoverflow.com/questions/51055490/minicssextractplugin-public-path-not-working
+      filename: '../css/[name].css',
+      chunkFilename: '../css/[name].css',
+    })
+  ],
   module: {
     rules: [
       {
@@ -24,7 +38,21 @@ module.exports = {
         ],
         // exclude: /node_modules/,
         loader: 'babel-loader'
-      }
+      },
+      {
+        test: /\.styl$/,
+        include: path.resolve(__dirname, 'front'),
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'stylus-loader?paths=node_modules/bootstrap-stylus/stylus/&resolve url',
+            options: {
+              include: path.resolve(__dirname, 'front')
+            }
+          },
+        ],
+      },
     ]
   },
   devtool: 'inline-source-map',
@@ -34,7 +62,7 @@ module.exports = {
       path.resolve(__dirname, 'front'),
     ],
     mainFiles: ['index'],
-    extensions: ['.jsx', '.js', '.json']
+    extensions: ['.jsx', '.js', '.json', '.styl', '.css']
   },
   // plugins: [
   //   new CleanWebpackPlugin([`${TYPE}/static/js`]),

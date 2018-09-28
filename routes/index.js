@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var request = require('request');
+// var request = require('request');
 var rp = require('request-promise');
 var amphtmlValidator = require('amphtml-validator');
 
@@ -8,12 +8,12 @@ var amphtmlValidator = require('amphtml-validator');
 router.get('/', function(req, res, next) {
   const data = {
     title: 'test'
-  }
+  };
 
   res.render('index', data);
 });
 
-router.post('/', function (req, res) {
+router.post('/', function(req, res) {
   const { body } = req;
   const URL = body.list[0];
 
@@ -23,7 +23,7 @@ router.post('/', function (req, res) {
 module.exports = router;
 
 function analytics(list, response) {
-  amphtmlValidator.getInstance().then(function (validator) {
+  amphtmlValidator.getInstance().then(function(validator) {
     startRequest(list, validator, response);
   });
 }
@@ -34,12 +34,12 @@ function startRequest(list, validator, response) {
     const url = item;
 
     rp(url)
-      .then(function (htmlString) {
+      .then(function(htmlString) {
         const obj = {
           url,
           status: '',
           list: []
-        }
+        };
 
         const result = validator.validateString(htmlString);
         obj.status = result.status;
@@ -63,11 +63,10 @@ function startRequest(list, validator, response) {
           sendOnClient(data, response);
         }
       })
-      .catch(function (err) {
-          console.error('err', err);
+      .catch(function(err) {
+        console.error('err', err);
       });
-
-  })
+  });
 }
 
 function sendOnClient(data, response) {

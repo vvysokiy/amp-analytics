@@ -1,42 +1,24 @@
 import React from 'react';
-import axios from 'axios';
+import { Route } from 'react-router-dom';
 
-import Textarea from './textarea.jsx';
+import Amp from './components/amp';
+import Schema from './components/schema';
+import Sidebar from './components/common/sidebar';
+import StartPage from './components/startPage';
+import './style';
 
-export default class App extends React.PureComponent {
-  state = {
-    value: '',
-  };
+const App = () => (
+  <div className={'app'}>
+    <Sidebar className={'app__sidebar'}/>
+    <div className={'app__body'}>
+      <Route
+        path='/'
+        component={StartPage}
+        exact/>
+      <Route path='/amp' component={Amp} />
+      <Route path='/schema' component={Schema} />
+    </div>
+  </div>
+);
 
-  analytics = () => {
-    const { value } = this.state;
-    const list = value.split('\n');
-    console.log('analytics list', list);
-    axios.post('/', {list})
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(error => console.error('ERROR_HANDLER: "/test/secret";', error.message));
-  }
-
-  onChange = event => {
-    this.setState({
-      value: event.target.value
-    });
-  }
-
-  render() {
-    const {value} = this.state;
-
-    return (
-      <div>
-        <button onClick={this.analytics}>
-          analytics
-        </button>
-        <Textarea
-          onChange={this.onChange}
-          value={value}/>
-      </div>
-    )
-  }
-};
+export default App;
