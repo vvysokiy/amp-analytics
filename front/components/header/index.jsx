@@ -4,7 +4,7 @@ import './style';
 
 const Header = () => (
   <div className={'header'}>
-    Рамблер / карета
+    Рамблер / анал
   </div>
 );
 
