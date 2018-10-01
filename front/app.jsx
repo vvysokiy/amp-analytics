@@ -16,10 +16,10 @@ const App = () => (
         <Sidebar className={'app__sidebar'}/>
         <div className={'app__main'}>
           <Route
-            path='/amp'
+            path='/'
             component={StartPage}
             exact/>
-          <Route path='/' component={Amp} />
+          <Route path='/amp' component={Amp} />
           <Route path='/schema' component={Schema} />
         </div>
       </div>

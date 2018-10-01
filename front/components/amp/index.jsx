@@ -4,7 +4,8 @@ import axios from 'axios';
 import Button from '../common/button';
 import Textarea from '../common/textarea';
 import FileUploader from '../common/fileUploader';
-import Statistic from './statistic';
+import Statistic from '../common/statistic';
+import CollapsibleList from '../common/collapsibleList';
 import './style';
 
 export default class Amp extends React.PureComponent {
@@ -26,13 +27,14 @@ export default class Amp extends React.PureComponent {
 
     this.setState({sentUrls: `${list.length}`});
 
-    axios.post('/', {list})
+    axios.post('/amp', {list})
       .then(({data}) => {
         const {result} = data;
         this.result = result;
+        console.log('result', result);
         this.setState({acceptUrls: `${result.length}`});
       })
-      .catch(error => console.error('ERROR_HANDLER: "/test/secret";', error.message));
+      .catch(error => console.error('ERROR_HANDLER: "/amp";', error.message));
   }
 
   onChange = ({target}) => this.setState({value: target.value})
@@ -45,6 +47,24 @@ export default class Amp extends React.PureComponent {
 
   render() {
     const {value, sentUrls, acceptUrls} = this.state;
+
+    const invalidArr = [];
+    let valid = 0;
+    let invalid = 0;
+    this.result.forEach(item => {
+      if (item.status === 'PASS') {
+        valid++;
+      } else {
+        invalid++;
+        invalidArr.push({
+          parent: {
+            id: item.url,
+            title: item.url,
+          },
+          child: item.list
+        });
+      }
+    });
 
     return (
       <div className={'amp'}>
@@ -67,7 +87,11 @@ export default class Amp extends React.PureComponent {
           <Statistic
             sent={sentUrls}
             accept={acceptUrls}
-            result={this.result}/>
+            valid={valid}
+            invalid={invalid}/>
+        ) : null}
+        {sentUrls && acceptUrls && invalidArr.length ? (
+          <CollapsibleList list={invalidArr}/>
         ) : null}
       </div>
     );

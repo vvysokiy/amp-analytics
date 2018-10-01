@@ -13,17 +13,17 @@ router.get('/', function(req, res, next) {
   res.render('index', data);
 });
 
-router.post('/', function(req, res) {
-  const { body } = req;
-  // const URL = body.list[0];
-
-  const send = data => {
-    res.send({
-      result: data
-    });
-  };
-
-  ampValidator(body.list, send);
-});
+// router.post('/', function(req, res) {
+//   const { body } = req;
+//   // const URL = body.list[0];
+//
+//   const send = data => {
+//     res.send({
+//       result: data
+//     });
+//   };
+//
+//   ampValidator(body.list, send);
+// });
 
 module.exports = router;
