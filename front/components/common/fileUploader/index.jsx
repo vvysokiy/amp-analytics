@@ -4,7 +4,7 @@ import XLSX from 'xlsx';
 
 import './style';
 
-const FileUploader = ({ onChange }) => {
+const FileUploader = ({ className, onChange }) => {
   const parser = event => {
     const reader = new FileReader();
 
@@ -23,12 +23,17 @@ const FileUploader = ({ onChange }) => {
     reader.readAsBinaryString(event.target.files[0]);
   };
 
+  const uploaderClass = className ? `uploader ${className}` : 'uploader';
+
   return (
-    <div className={'uploader'}>
-      <label htmlFor='file'>
-        Choose file to upload
+    <div className={uploaderClass}>
+      <label className={'uploader__label'} htmlFor='file'>
+        <div className={'uploader__btn'}>
+          Загрузить файл xmlx
+        </div>
       </label>
       <input
+        className={'uploader__input'}
         type='file'
         id='file'
         name='file'
@@ -39,6 +44,7 @@ const FileUploader = ({ onChange }) => {
 };
 
 FileUploader.propTypes = {
+  className: PropTypes.string,
   onChange: PropTypes.func.isRequired
 };
 

@@ -1,0 +1,42 @@
+.amp
+  display flex
+  flex-direction column
+
+  &__control
+    display flex
+    width 100%
+    margin-bottom 10px
+
+  &__panel
+    &--left
+      display flex
+      align-items center
+      flex-direction column
+      justify-content center
+      width 220px
+      margin-right 30px
+      box-shadow 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8
+      background-color #ff
+
+    &--right
+      width calc(100% - 250px)
+
+  &__uploader
+    margin-bottom 20px
+
+  &__result
+    display flex
+    height 35px
+    margin-bottom 10px
+    padding 10px 10px 0
+    background-color #fff
+    border-radius 1px
+    box-shadow 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8
+    font-family 'Roboto', sans-serif
+    font-size 13px
+    line-height 15px
+    letter-spacing 1px
+    color #262626
+
+  &__result-item
+    margin-right 15px
