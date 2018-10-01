@@ -36,9 +36,7 @@ module.exports = function ampValidator(list, send) {
           }
           return;
         })
-        .catch(function(err) {
-          console.error('err', err);
-        });
+        .catch(err => console.error('Utils => ampValidator', err.message));
     });
   });
 };

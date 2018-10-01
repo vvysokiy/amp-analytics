@@ -18,9 +18,11 @@ export default class CollapsibleList extends React.PureComponent {
 
   render() {
     const {openId} = this.state;
+    const {list} = this.props;
+
     return (
       <div className={'list'}>
-        {testArr.length ? (testArr.map(item => (
+        {list.length ? (list.map(item => (
           <Item
             key={item.parent.id}
             data={item}
